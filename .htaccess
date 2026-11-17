@@ -1,0 +1,16 @@
+# ======================================================
+# APACHE SECURITY HARDENING (.HTACCESS)
+# ======================================================
+
+# 1. Mencegah publik menjelajahi daftar isi folder (Directory Browsing)
+Options -Indexes
+
+# 2. Kunci akses publik terhadap berkas sensitif dan database
+<FilesMatch "\.(sql|env|ini|log|sh|bak|json)$">
+    Require all denied
+</FilesMatch>
+
+# 3. Blokir akses langsung ke berkas konfigurasi dan helper internal
+<FilesMatch "^(env\.php|database\.php|auth_check\.php)$">
+    Require all denied
+</FilesMatch>
